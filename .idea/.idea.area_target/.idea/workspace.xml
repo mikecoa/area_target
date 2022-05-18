@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="f318da9f-505f-4ba4-97a0-471a685f3842" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.area_target/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.area_target/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AssignToggleGroup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AssignToggleGroup.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/DotweenButton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/DotweenButton.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -25,6 +27,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
+    "nodejs_package_manager_path": "npm",
     "rider.run.widget.enabled.cache": "false",
     "settings.editor.selected.configurable": "CodeLensConfigurable",
     "vue.rearranger.settings.migration": "true"
