@@ -2389,19 +2389,7 @@ MonoBehaviour:
   m_Group: {fileID: 1690059178}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1287335530}
-        m_TargetAssemblyTypeName: ButtonHandler, Assembly-CSharp
-        m_MethodName: changeDestToBen
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_IsOn: 0
 --- !u!1 &1278369199
 GameObject:
@@ -2537,6 +2525,8 @@ MonoBehaviour:
   Michael: {fileID: 1548887736}
   Benedict: {fileID: 1439874762}
   nicToggle: {fileID: 1486471917}
+  mikeToggle: {fileID: 1979684903}
+  benToggle: {fileID: 1173790885}
 --- !u!114 &1287335531
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4313,19 +4303,7 @@ MonoBehaviour:
   m_Group: {fileID: 1690059178}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1287335530}
-        m_TargetAssemblyTypeName: ButtonHandler, Assembly-CSharp
-        m_MethodName: changeDestToMike
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_IsOn: 0
 --- !u!1 &2071927144
 GameObject:
