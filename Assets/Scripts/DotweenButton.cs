@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using TMPro;
+using UnityEditor.UI;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 using Button = UnityEngine.UI.Button;
-using Image = UnityEngine.UIElements.Image;
 
 public class DotweenButton : MonoBehaviour
 {
@@ -20,6 +20,7 @@ public class DotweenButton : MonoBehaviour
     [SerializeField] private CanvasGroup _canvasGroup;
     [SerializeField] private Button showLocationButton;
     [SerializeField] private Button hideLocationButton;
+    [SerializeField] private ToggleGroup _toggleGroup;
     
 
     private void Start()
@@ -44,6 +45,7 @@ public class DotweenButton : MonoBehaviour
         hideLocationButton.gameObject.SetActive(false);
         _canvasGroup.DOFade(0, 1);
         _canvasGroup.blocksRaycasts = true;
+        _toggleGroup.SetAllTogglesOff(true);
     }
 
     // public void ShowLoc()

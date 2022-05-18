@@ -2006,19 +2006,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1093049547}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1690059178}
-        m_TargetAssemblyTypeName: UnityEngine.UI.ToggleGroup, UnityEngine.UI
-        m_MethodName: SetAllTogglesOff
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1093049547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2532,6 +2520,7 @@ MonoBehaviour:
   _canvasGroup: {fileID: 1690059179}
   showLocationButton: {fileID: 1767799755}
   hideLocationButton: {fileID: 1093049546}
+  _toggleGroup: {fileID: 1690059178}
 --- !u!1 &1288244138
 GameObject:
   m_ObjectHideFlags: 0
