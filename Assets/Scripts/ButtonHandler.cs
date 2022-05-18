@@ -16,10 +16,14 @@ public class ButtonHandler : MonoBehaviour
     public GameObject Benedict;
 
     [SerializeField] private Toggle nicToggle;
-
+    [SerializeField] private Toggle mikeToggle;
+    [SerializeField] private Toggle benToggle;
+    
     private void Start()
     {
         nicToggle.onValueChanged.AddListener(OnNicToggleOnClick);
+        mikeToggle.onValueChanged.AddListener(OnMikeToggleOnClick);
+        benToggle.onValueChanged.AddListener(OnBenToggleOnClick);
     }
 
     private void OnNicToggleOnClick(bool isOn)
@@ -27,6 +31,30 @@ public class ButtonHandler : MonoBehaviour
         if (isOn)
         {
             end.transform.position = Nicolas.transform.position;
+        }
+        else
+        {
+            end.transform.position = start.transform.position;
+        }
+    }
+    
+    private void OnMikeToggleOnClick(bool isOn)
+    {
+        if (isOn)
+        {
+            end.transform.position = Michael.transform.position;
+        }
+        else
+        {
+            end.transform.position = start.transform.position;
+        }
+    }
+    
+    private void OnBenToggleOnClick(bool isOn)
+    {
+        if (isOn)
+        {
+            end.transform.position = Benedict.transform.position;
         }
         else
         {
