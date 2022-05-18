@@ -2362,7 +2362,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1278369201}
   toggleTransition: 1
   graphic: {fileID: 1731479650}
-  m_Group: {fileID: 1690059178}
+  m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2867,7 +2867,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1832425193}
   toggleTransition: 1
   graphic: {fileID: 1582914869}
-  m_Group: {fileID: 1690059178}
+  m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -3300,6 +3300,7 @@ GameObject:
   - component: {fileID: 1690059177}
   - component: {fileID: 1690059178}
   - component: {fileID: 1690059179}
+  - component: {fileID: 1690059180}
   m_Layer: 5
   m_Name: ToggleGroup
   m_TagString: Untagged
@@ -3354,6 +3355,18 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &1690059180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1690059176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff31ece080b721d498675a26f475fe74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1731479648
 GameObject:
   m_ObjectHideFlags: 0
@@ -4265,7 +4278,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 535874948}
   toggleTransition: 1
   graphic: {fileID: 1311789256}
-  m_Group: {fileID: 1690059178}
+  m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
       m_Calls: []
