@@ -46,6 +46,7 @@ public class NavMan : MonoBehaviour
     // Update is called once per frame
     public void Update()
     {
+        List<Vector3> corners = new List<Vector3>();
         if (start.transform.position == end.transform.position) Reset();
         
         // Update the way to the goal every second.
@@ -64,6 +65,13 @@ public class NavMan : MonoBehaviour
             NavMesh.CalculatePath(hit.position, end.position, NavMesh.AllAreas, path);
         }
         lineRenderer.positionCount = path.corners.Length;
+        // lineRenderer.positionCount = 2;
+        //
+        // foreach(Vector3 c in path.corners)
+        // {
+        //     corners.Add(c + Vector3.up * 1);
+        // }
+        // lineRenderer.SetPositions(corners.ToArray());
         lineRenderer.SetPositions(path.corners);
 
 
