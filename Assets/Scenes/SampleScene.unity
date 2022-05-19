@@ -1533,6 +1533,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 658900081}
+  - component: {fileID: 658900082}
   m_Layer: 0
   m_Name: CanvasButton
   m_TagString: Untagged
@@ -1557,6 +1558,30 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &658900082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 658900080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80c12763ddf6b6045b3f2413a64b0c21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nicToMike: {fileID: 2029300867}
+  mikeToBen: {fileID: 1410729144}
+  benToNic: {fileID: 1640948953}
+  nic: {fileID: 1288244138}
+  mike: {fileID: 1548887736}
+  ben: {fileID: 1439874762}
+  start: {fileID: 251751229}
+  end: {fileID: 305496045}
+  _canvasGroup: {fileID: 1690059179}
+  _toggleGroup: {fileID: 1690059178}
+  showLocationButton: {fileID: 1767799755}
+  hideLocationButton: {fileID: 1093049546}
 --- !u!1 &662108596
 GameObject:
   m_ObjectHideFlags: 0
@@ -3307,7 +3332,6 @@ GameObject:
   - component: {fileID: 1410729146}
   - component: {fileID: 1410729145}
   - component: {fileID: 1410729144}
-  - component: {fileID: 1410729147}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -3417,30 +3441,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1410729142}
   m_CullTransparentMesh: 1
---- !u!114 &1410729147
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1410729142}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80c12763ddf6b6045b3f2413a64b0c21, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nicToMike: {fileID: 2029300867}
-  mikeToBen: {fileID: 1410729144}
-  benToNic: {fileID: 1640948953}
-  nic: {fileID: 1288244138}
-  mike: {fileID: 1548887736}
-  ben: {fileID: 1439874762}
-  start: {fileID: 251751229}
-  end: {fileID: 305496045}
-  _canvasGroup: {fileID: 1690059179}
-  _toggleGroup: {fileID: 1690059178}
-  showLocationButton: {fileID: 1767799755}
-  hideLocationButton: {fileID: 1093049546}
 --- !u!1 &1439874762
 GameObject:
   m_ObjectHideFlags: 0
@@ -4051,7 +4051,6 @@ GameObject:
   - component: {fileID: 1640948955}
   - component: {fileID: 1640948954}
   - component: {fileID: 1640948953}
-  - component: {fileID: 1640948956}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -4161,30 +4160,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1640948951}
   m_CullTransparentMesh: 1
---- !u!114 &1640948956
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1640948951}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80c12763ddf6b6045b3f2413a64b0c21, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nicToMike: {fileID: 2029300867}
-  mikeToBen: {fileID: 1410729144}
-  benToNic: {fileID: 1640948953}
-  nic: {fileID: 1288244138}
-  mike: {fileID: 1548887736}
-  ben: {fileID: 1439874762}
-  start: {fileID: 251751229}
-  end: {fileID: 305496045}
-  _canvasGroup: {fileID: 1690059179}
-  _toggleGroup: {fileID: 1690059178}
-  showLocationButton: {fileID: 1767799755}
-  hideLocationButton: {fileID: 1093049546}
 --- !u!1 &1644830297
 GameObject:
   m_ObjectHideFlags: 0
@@ -5325,7 +5300,6 @@ GameObject:
   - component: {fileID: 2029300869}
   - component: {fileID: 2029300868}
   - component: {fileID: 2029300867}
-  - component: {fileID: 2029300870}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -5435,30 +5409,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2029300865}
   m_CullTransparentMesh: 1
---- !u!114 &2029300870
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2029300865}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80c12763ddf6b6045b3f2413a64b0c21, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nicToMike: {fileID: 2029300867}
-  mikeToBen: {fileID: 1410729144}
-  benToNic: {fileID: 1640948953}
-  nic: {fileID: 1288244138}
-  mike: {fileID: 1548887736}
-  ben: {fileID: 1439874762}
-  start: {fileID: 251751229}
-  end: {fileID: 305496045}
-  _canvasGroup: {fileID: 1690059179}
-  _toggleGroup: {fileID: 1690059178}
-  showLocationButton: {fileID: 1767799755}
-  hideLocationButton: {fileID: 1093049546}
 --- !u!1 &2071927144
 GameObject:
   m_ObjectHideFlags: 0
