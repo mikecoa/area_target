@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using System;
 using TMPro;
+using UnityEngine.Animations;
 using UnityEngine.UIElements;
 using Button = UnityEngine.UI.Button;
 
@@ -17,6 +18,9 @@ public class NavMan : MonoBehaviour
     public Button nicToMike;
     public Button mikeToBen;
     public Button benToNic;
+    public LookAtConstraint nicCanvas;
+    public LookAtConstraint mikeCanvas;
+    public LookAtConstraint benCanvas;
     public LineRenderer lineRenderer;
     public GameObject agent;
     public NavMeshPath path;
@@ -75,16 +79,19 @@ public class NavMan : MonoBehaviour
             {
                 //Nicolas.SetActive(true);
                 nicToMike.gameObject.SetActive(true);
+                nicCanvas.constraintActive = true;
             }
             else if (Michael.transform.position == end.transform.position)
             {
                 //Michael.SetActive(true);
                 mikeToBen.gameObject.SetActive(true);
+                mikeCanvas.constraintActive = true;
             }
             else if (Benedict.transform.position == end.transform.position)
             {
                 //Benedict.SetActive(true);
                 benToNic.gameObject.SetActive(true);
+                benCanvas.constraintActive = true;
             }
             lineRenderer.positionCount = 0;
             reach = true;
@@ -105,6 +112,9 @@ public class NavMan : MonoBehaviour
         nicToMike.gameObject.SetActive(false);
         mikeToBen.gameObject.SetActive(false);
         benToNic.gameObject.SetActive(false);
+        nicCanvas.constraintActive = false;
+        mikeCanvas.constraintActive = false;
+        benCanvas.constraintActive = false;
     }
 
     public void OnAreaTargetChecked()
