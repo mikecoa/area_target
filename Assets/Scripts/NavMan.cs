@@ -5,6 +5,7 @@ using UnityEngine.AI;
 using System;
 using TMPro;
 using UnityEngine.UIElements;
+using Button = UnityEngine.UI.Button;
 
 public class NavMan : MonoBehaviour
 {
@@ -13,6 +14,9 @@ public class NavMan : MonoBehaviour
     public GameObject Nicolas;
     public GameObject Michael;
     public GameObject Benedict;
+    public Button nicToMike;
+    public Button mikeToBen;
+    public Button benToNic;
     public LineRenderer lineRenderer;
     public GameObject agent;
     public NavMeshPath path;
@@ -69,15 +73,18 @@ public class NavMan : MonoBehaviour
         {
             if (Nicolas.transform.position == end.transform.position)
             {
-                Nicolas.SetActive(true);
+                //Nicolas.SetActive(true);
+                nicToMike.gameObject.SetActive(true);
             }
             else if (Michael.transform.position == end.transform.position)
             {
-                Michael.SetActive(true);
+                //Michael.SetActive(true);
+                mikeToBen.gameObject.SetActive(true);
             }
             else if (Benedict.transform.position == end.transform.position)
             {
-                Benedict.SetActive(true);
+                //Benedict.SetActive(true);
+                benToNic.gameObject.SetActive(true);
             }
             lineRenderer.positionCount = 0;
             reach = true;
@@ -85,7 +92,8 @@ public class NavMan : MonoBehaviour
 
         if (reach && distance > distance_adjust)
         {
-            reach = false;
+            //reach = false;
+            Reset();
         }
     }
 
@@ -94,6 +102,9 @@ public class NavMan : MonoBehaviour
         Nicolas.SetActive(false);
         Michael.SetActive(false);
         Benedict.SetActive(false);
+        nicToMike.gameObject.SetActive(false);
+        mikeToBen.gameObject.SetActive(false);
+        benToNic.gameObject.SetActive(false);
     }
 
     public void OnAreaTargetChecked()
