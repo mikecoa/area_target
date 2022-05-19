@@ -14,10 +14,6 @@ public class NextLocationButtons : MonoBehaviour
     public GameObject nic;
     public GameObject mike;
     public GameObject ben;
-    /*public LookAtConstraint nicCanvas;
-    public LookAtConstraint mikeCanvas;
-    public LookAtConstraint benCanvas;*/
-    public GameObject start;
     public GameObject end;
     public CanvasGroup _canvasGroup;
     public ToggleGroup _toggleGroup;
@@ -32,36 +28,24 @@ public class NextLocationButtons : MonoBehaviour
         nicToMike.onClick.AddListener(changeToMike);
         mikeToBen.onClick.AddListener(changeToBen);
         benToNic.onClick.AddListener(changeToNic);
-        /*nicCanvas.constraintActive = false;
-        mikeCanvas.constraintActive = false;
-        benCanvas.constraintActive = false;*/
     }
 
     void changeToNic()
     {
         HideLocOnClick();
         end.transform.position = nic.transform.position;
-        /*nicCanvas.constraintActive = false;
-        mikeCanvas.constraintActive = false;
-        benCanvas.constraintActive = false;*/
         NavMan.currentLookAtConstraint.constraintActive = false;
     }
     void changeToMike()
     {
         HideLocOnClick();
         end.transform.position = mike.transform.position;
-        /*nicCanvas.constraintActive = false;
-        mikeCanvas.constraintActive = false;
-        benCanvas.constraintActive = false;*/
         NavMan.currentLookAtConstraint.constraintActive = false;
     }
     void changeToBen()
     {
         HideLocOnClick();
         end.transform.position = ben.transform.position;
-        /*nicCanvas.constraintActive = false;
-        mikeCanvas.constraintActive = false;
-        benCanvas.constraintActive = false;*/
         NavMan.currentLookAtConstraint.constraintActive = false;
     }
     void HideLocOnClick()
