@@ -33,12 +33,16 @@ public class NavMan : MonoBehaviour
     public float distance_adjust;
     NavMeshHit hit;
 
+    public LookAtConstraint currentLookAtConstraint;
+
     // Start is called before the first frame update
     void Start()
     {
         path = new NavMeshPath();
         elapsed = 0.0f;
-
+        nicCanvas.constraintActive = false;
+        mikeCanvas.constraintActive = false;
+        benCanvas.constraintActive = false;
     }
 
     // Update is called once per frame
@@ -80,18 +84,21 @@ public class NavMan : MonoBehaviour
                 //Nicolas.SetActive(true);
                 nicToMike.gameObject.SetActive(true);
                 nicCanvas.constraintActive = true;
+                currentLookAtConstraint = nicCanvas;
             }
             else if (Michael.transform.position == end.transform.position)
             {
                 //Michael.SetActive(true);
                 mikeToBen.gameObject.SetActive(true);
                 mikeCanvas.constraintActive = true;
+                currentLookAtConstraint = mikeCanvas;
             }
             else if (Benedict.transform.position == end.transform.position)
             {
                 //Benedict.SetActive(true);
                 benToNic.gameObject.SetActive(true);
                 benCanvas.constraintActive = true;
+                currentLookAtConstraint = benCanvas;
             }
             lineRenderer.positionCount = 0;
             reach = true;

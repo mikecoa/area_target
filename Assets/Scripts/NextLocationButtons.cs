@@ -14,9 +14,9 @@ public class NextLocationButtons : MonoBehaviour
     public GameObject nic;
     public GameObject mike;
     public GameObject ben;
-    public LookAtConstraint nicCanvas;
+    /*public LookAtConstraint nicCanvas;
     public LookAtConstraint mikeCanvas;
-    public LookAtConstraint benCanvas;
+    public LookAtConstraint benCanvas;*/
     public GameObject start;
     public GameObject end;
     public CanvasGroup _canvasGroup;
@@ -24,15 +24,7 @@ public class NextLocationButtons : MonoBehaviour
     public Button showLocationButton;
     public Button hideLocationButton;
 
-    // private void Awake()
-    // {
-    //     nicCanvas = GetComponent<LookAtConstraint>();
-    //     mikeCanvas = GetComponent<LookAtConstraint>();
-    //     benCanvas = GetComponent<LookAtConstraint>();
-    //     nicCanvas.constraintActive = false;
-    //     mikeCanvas.constraintActive = false;
-    //     benCanvas.constraintActive = false;
-    // }
+    public NavMan NavMan;
 
     // Start is called before the first frame update
     void Start()
@@ -40,34 +32,37 @@ public class NextLocationButtons : MonoBehaviour
         nicToMike.onClick.AddListener(changeToMike);
         mikeToBen.onClick.AddListener(changeToBen);
         benToNic.onClick.AddListener(changeToNic);
-        nicCanvas.constraintActive = false;
+        /*nicCanvas.constraintActive = false;
         mikeCanvas.constraintActive = false;
-        benCanvas.constraintActive = false;
+        benCanvas.constraintActive = false;*/
     }
 
     void changeToNic()
     {
         HideLocOnClick();
         end.transform.position = nic.transform.position;
-        nicCanvas.constraintActive = false;
+        /*nicCanvas.constraintActive = false;
         mikeCanvas.constraintActive = false;
-        benCanvas.constraintActive = false;
+        benCanvas.constraintActive = false;*/
+        NavMan.currentLookAtConstraint.constraintActive = false;
     }
     void changeToMike()
     {
         HideLocOnClick();
         end.transform.position = mike.transform.position;
-        nicCanvas.constraintActive = false;
+        /*nicCanvas.constraintActive = false;
         mikeCanvas.constraintActive = false;
-        benCanvas.constraintActive = false;
+        benCanvas.constraintActive = false;*/
+        NavMan.currentLookAtConstraint.constraintActive = false;
     }
     void changeToBen()
     {
         HideLocOnClick();
         end.transform.position = ben.transform.position;
-        nicCanvas.constraintActive = false;
+        /*nicCanvas.constraintActive = false;
         mikeCanvas.constraintActive = false;
-        benCanvas.constraintActive = false;
+        benCanvas.constraintActive = false;*/
+        NavMan.currentLookAtConstraint.constraintActive = false;
     }
     void HideLocOnClick()
     {
@@ -77,10 +72,5 @@ public class NextLocationButtons : MonoBehaviour
         _canvasGroup.blocksRaycasts = true;
         _toggleGroup.SetAllTogglesOff(true);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 }
