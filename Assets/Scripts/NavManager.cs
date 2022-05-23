@@ -94,21 +94,18 @@ public class NavManager : MonoBehaviour
                 nicToMike.gameObject.SetActive(true);
                 nicCanvas.constraintActive = true;
                 currentLookAtConstraint = nicCanvas;
-                DestroySpheres();
             }
             else if (Michael.transform.position == end.transform.position)
             {
                 mikeToBen.gameObject.SetActive(true);
                 mikeCanvas.constraintActive = true;
                 currentLookAtConstraint = mikeCanvas;
-                DestroySpheres();
             }
             else if (Benedict.transform.position == end.transform.position)
             {
                 benToNic.gameObject.SetActive(true);
                 benCanvas.constraintActive = true;
                 currentLookAtConstraint = benCanvas;
-                DestroySpheres();
             }
             lineRenderer.positionCount = 0;
             reach = true;
@@ -148,7 +145,7 @@ public class NavManager : MonoBehaviour
     public void FindPath()
     {
         List<Vector3> posCorners = new List<Vector3>();
-        
+
         Vector3 curPos, curUnitVector, vec;
         float dis, intervals;
         DestroySpheres();
@@ -170,7 +167,7 @@ public class NavManager : MonoBehaviour
         {
             if (Vector3.Distance(curPos, posCorners[i + 1]) >= intervals)
             {
-                posPath.Add(posCorners[i]+Vector3.up * 0.25f);
+                posPath.Add(posCorners[i]+Vector3.up * 0.5f);
             }
             curPos = posCorners[i];
             vec = posCorners[i+1] - posCorners[i];
@@ -181,7 +178,7 @@ public class NavManager : MonoBehaviour
             while (Vector3.Distance(curPos, posCorners[i+1]) >= intervals)
             {
                 curPos = curPos + curUnitVector;
-                posPath.Add(curPos+Vector3.up * 0.25f);
+                posPath.Add(curPos+Vector3.up * 0.5f);
             }
         }
         foreach (Vector3 p in posPath)
@@ -210,6 +207,7 @@ public class NavManager : MonoBehaviour
         {
             Destroy(g);
         }
+        spheres.Clear();
     }
     public void OnAreaTargetChecked()
     {
