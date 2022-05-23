@@ -19,6 +19,7 @@ public class NavManager : MonoBehaviour
     public Button nicToMike;
     public Button mikeToBen;
     public Button benToNic;
+    public Transform canvas;
     public LookAtConstraint nicCanvas;
     public LookAtConstraint mikeCanvas;
     public LookAtConstraint benCanvas;
@@ -151,7 +152,7 @@ public class NavManager : MonoBehaviour
         }
         foreach (Vector3 p in posPath)
         {
-            spheres.Add(Instantiate(prefab, p, Quaternion.identity));
+            spheres.Add(Instantiate(prefab, p, Quaternion.identity,canvas));
         }
     }
 
