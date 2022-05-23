@@ -64,7 +64,7 @@ public class NavManager : MonoBehaviour
             }
         }*/
         
-        if (NavMesh.SamplePosition(agent.transform.position, out hit, 5.0f, NavMesh.AllAreas))
+        /*if (NavMesh.SamplePosition(agent.transform.position, out hit, 5.0f, NavMesh.AllAreas))
         {
             NavMesh.CalculatePath(hit.position, end.position, NavMesh.AllAreas, path);
         }
@@ -76,7 +76,7 @@ public class NavManager : MonoBehaviour
         //     corners.Add(c + Vector3.up * 1);
         // }
         // lineRenderer.SetPositions(corners.ToArray());
-        lineRenderer.SetPositions(path.corners);
+        lineRenderer.SetPositions(path.corners);*/
 
 
         distance = Vector3.Distance (agent.transform.position, end.transform.position);
@@ -121,8 +121,8 @@ public class NavManager : MonoBehaviour
         {
             NavMesh.CalculatePath(hit.position, end.position, NavMesh.AllAreas, path);
         }
-        lineRenderer.positionCount = path.corners.Length;
-        lineRenderer.SetPositions(path.corners);
+        /*lineRenderer.positionCount = path.corners.Length;
+        lineRenderer.SetPositions(path.corners);*/
         
         foreach(Vector3 c in path.corners)
         {

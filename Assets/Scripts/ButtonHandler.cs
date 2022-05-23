@@ -18,6 +18,8 @@ public class ButtonHandler : MonoBehaviour
     [SerializeField] private Toggle nicToggle;
     [SerializeField] private Toggle mikeToggle;
     [SerializeField] private Toggle benToggle;
+
+    public NavManager navManager;
     
     private void Start()
     {
@@ -31,10 +33,14 @@ public class ButtonHandler : MonoBehaviour
         if (isOn)
         {
             end.transform.position = Nicolas.transform.position;
+            navManager.DestroySpheres();
+            navManager.FindPath();
         }
         else
         {
             end.transform.position = start.transform.position;
+            navManager.DestroySpheres();
+            
         }
     }
     
@@ -43,10 +49,14 @@ public class ButtonHandler : MonoBehaviour
         if (isOn)
         {
             end.transform.position = Michael.transform.position;
+            navManager.DestroySpheres();
+            navManager.FindPath();
         }
         else
         {
             end.transform.position = start.transform.position;
+            navManager.DestroySpheres();
+            
         }
     }
     
@@ -55,10 +65,14 @@ public class ButtonHandler : MonoBehaviour
         if (isOn)
         {
             end.transform.position = Benedict.transform.position;
+            navManager.DestroySpheres();
+            navManager.FindPath();
         }
         else
         {
             end.transform.position = start.transform.position;
+            navManager.DestroySpheres();
+            
         }
     }
 

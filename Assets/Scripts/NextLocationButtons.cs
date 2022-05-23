@@ -28,6 +28,7 @@ public class NextLocationButtons : MonoBehaviour
         nicToMike.onClick.AddListener(changeToMike);
         mikeToBen.onClick.AddListener(changeToBen);
         benToNic.onClick.AddListener(changeToNic);
+        hideLocationButton.onClick.AddListener(HideLocOnClick);
     }
 
     void changeToNic()
