@@ -127,12 +127,16 @@ public class NavManager : MonoBehaviour
         foreach(Vector3 c in path.corners)
         {
              posCorners.Add(c);
-             posPath.Add(c);
         }
 
         intervals = 1;
+        curPos = posCorners[0];
         for (int i = 0; i < path.corners.Length-1 || (i + 1) != path.corners.Length; i++)
         {
+            if (Vector3.Distance(curPos, posCorners[i + 1]) >= intervals)
+            {
+                posPath.Add(posCorners[i]);
+            }
             curPos = posCorners[i];
             vec = posCorners[i+1] - posCorners[i];
             dis = Vector3.Distance(posCorners[i], posCorners[i+1]);

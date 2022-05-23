@@ -36,6 +36,7 @@ public class NextLocationButtons : MonoBehaviour
         end.transform.position = nic.transform.position;
         NavManager.currentLookAtConstraint.constraintActive = false;
         NavManager.DestroySpheres();
+        NavManager.FindPath();
     }
     void changeToMike()
     {
@@ -43,6 +44,7 @@ public class NextLocationButtons : MonoBehaviour
         end.transform.position = mike.transform.position;
         NavManager.currentLookAtConstraint.constraintActive = false;
         NavManager.DestroySpheres();
+        NavManager.FindPath();
     }
     void changeToBen()
     {
@@ -50,6 +52,7 @@ public class NextLocationButtons : MonoBehaviour
         end.transform.position = ben.transform.position;
         NavManager.currentLookAtConstraint.constraintActive = false;
         NavManager.DestroySpheres();
+        NavManager.FindPath();
     }
     void HideLocOnClick()
     {
