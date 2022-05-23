@@ -35,18 +35,21 @@ public class NextLocationButtons : MonoBehaviour
         HideLocOnClick();
         end.transform.position = nic.transform.position;
         NavManager.currentLookAtConstraint.constraintActive = false;
+        NavManager.DestroySpheres();
     }
     void changeToMike()
     {
         HideLocOnClick();
         end.transform.position = mike.transform.position;
         NavManager.currentLookAtConstraint.constraintActive = false;
+        NavManager.DestroySpheres();
     }
     void changeToBen()
     {
         HideLocOnClick();
         end.transform.position = ben.transform.position;
         NavManager.currentLookAtConstraint.constraintActive = false;
+        NavManager.DestroySpheres();
     }
     void HideLocOnClick()
     {
@@ -55,6 +58,7 @@ public class NextLocationButtons : MonoBehaviour
         _canvasGroup.DOFade(0, 1);
         _canvasGroup.blocksRaycasts = true;
         _toggleGroup.SetAllTogglesOff(true);
+        NavManager.DestroySpheres();
     }
     
 }

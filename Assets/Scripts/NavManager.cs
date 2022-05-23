@@ -87,18 +87,21 @@ public class NavManager : MonoBehaviour
                 nicToMike.gameObject.SetActive(true);
                 nicCanvas.constraintActive = true;
                 currentLookAtConstraint = nicCanvas;
+                DestroySpheres();
             }
             else if (Michael.transform.position == end.transform.position)
             {
                 mikeToBen.gameObject.SetActive(true);
                 mikeCanvas.constraintActive = true;
                 currentLookAtConstraint = mikeCanvas;
+                DestroySpheres();
             }
             else if (Benedict.transform.position == end.transform.position)
             {
                 benToNic.gameObject.SetActive(true);
                 benCanvas.constraintActive = true;
                 currentLookAtConstraint = benCanvas;
+                DestroySpheres();
             }
             lineRenderer.positionCount = 0;
             reach = true;
@@ -124,6 +127,7 @@ public class NavManager : MonoBehaviour
         foreach(Vector3 c in path.corners)
         {
              posCorners.Add(c);
+             posPath.Add(c);
         }
 
         intervals = 1;
