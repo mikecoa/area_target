@@ -135,7 +135,7 @@ public class NavManager : MonoBehaviour
         {
             if (Vector3.Distance(curPos, posCorners[i + 1]) >= intervals)
             {
-                posPath.Add(posCorners[i]);
+                posPath.Add(posCorners[i]+Vector3.up * 0.25f);
             }
             curPos = posCorners[i];
             vec = posCorners[i+1] - posCorners[i];
@@ -146,7 +146,7 @@ public class NavManager : MonoBehaviour
             while (Vector3.Distance(curPos, posCorners[i+1]) >= intervals)
             {
                 curPos = curPos + curUnitVector;
-                posPath.Add(curPos);
+                posPath.Add(curPos+Vector3.up * 0.25f);
             }
         }
         foreach (Vector3 p in posPath)
