@@ -28,24 +28,30 @@ public class NavManager : MonoBehaviour
     public NavMeshPath path;
     public GameObject prefab;
     public Button findPathButton;
+    public Camera cam;
     //float elapsed;
     public TextMeshProUGUI textMesh;
     private float distance;
     private bool reach = false;
     public float distance_adjust;
     NavMeshHit hit;
+    public List<GameObject> spheres;
+    public List<Vector3> posPath;
 
     public LookAtConstraint currentLookAtConstraint;
 
     // Start is called before the first frame update
     void Start()
     {
+        posPath = new List<Vector3>();
         path = new NavMeshPath();
+        cam = Camera.main;
         findPathButton.onClick.AddListener(FindPath);
         //elapsed = 0.0f;
         nicCanvas.constraintActive = false;
         mikeCanvas.constraintActive = false;
         benCanvas.constraintActive = false;
+        spheres = new List<GameObject>();
     }
 
     // Update is called once per frame
@@ -109,12 +115,40 @@ public class NavManager : MonoBehaviour
         }
 
         if (reach && distance > distance_adjust) Reset();
+        
+        /*foreach(GameObject s in spheres){
+            if(Vector3.Distance(cam.WorldToScreenPoint(agent.transform.position), s.transform.position) < 0.2f)
+            {
+                spheres.Remove(s);
+                Destroy(s);
+            }
+        }*/
+
+        if (spheres.Count > 0){
+            for (int i = 0; i < posPath.Count; i++)
+            {
+                if (Vector3.Distance(agent.transform.position, posPath[i]) < 1)
+                {
+                    spheres[i].SetActive(false);
+                }
+            }
+        }
     }
-    List<GameObject> spheres = new List<GameObject>();
+
+    /*public void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.name == "IndicatorBall(Clone)")
+        {
+            spheres.Remove(collision.gameObject);
+            Destroy(collision.gameObject);
+        }
+    }*/
+
+    
     public void FindPath()
     {
         List<Vector3> posCorners = new List<Vector3>();
-        List<Vector3> posPath = new List<Vector3>();
+        
         Vector3 curPos, curUnitVector, vec;
         float dis, intervals;
         DestroySpheres();
@@ -152,8 +186,9 @@ public class NavManager : MonoBehaviour
         }
         foreach (Vector3 p in posPath)
         {
-            spheres.Add(Instantiate(prefab, p, Quaternion.identity,canvas));
+            spheres.Add(Instantiate(prefab, p, Quaternion.identity, canvas));
         }
+        
     }
 
     public void Reset()
