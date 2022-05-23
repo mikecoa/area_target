@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f318da9f-505f-4ba4-97a0-471a685f3842" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.area_target/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.area_target/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AssignToggleGroup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AssignToggleGroup.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/DotweenButton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/DotweenButton.cs" afterDir="false" />
+    <list default="true" id="5bbd1dc7-5884-49b7-a5cc-94a32f1078db" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/IndicatorBall.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/IndicatorBall.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/NavManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/NavManager.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
