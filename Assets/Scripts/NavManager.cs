@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using System;
+using System.Security.Cryptography;
 using TMPro;
 using UnityEngine.Animations;
 using UnityEngine.UIElements;
 using Button = UnityEngine.UI.Button;
 
-public class NavMan : MonoBehaviour
+public class NavManager : MonoBehaviour
 {
     public Transform start;
     public Transform end;
@@ -24,6 +25,8 @@ public class NavMan : MonoBehaviour
     public LineRenderer lineRenderer;
     public GameObject agent;
     public NavMeshPath path;
+    public GameObject prefab;
+    public Button findPathButton;
     //float elapsed;
     public TextMeshProUGUI textMesh;
     private float distance;
@@ -37,6 +40,7 @@ public class NavMan : MonoBehaviour
     void Start()
     {
         path = new NavMeshPath();
+        findPathButton.onClick.AddListener(FindPath);
         //elapsed = 0.0f;
         nicCanvas.constraintActive = false;
         mikeCanvas.constraintActive = false;
@@ -101,7 +105,47 @@ public class NavMan : MonoBehaviour
         }
 
         if (reach && distance > distance_adjust) Reset();
+    }
+    List<GameObject> spheres = new List<GameObject>();
+    public void FindPath()
+    {
+        List<Vector3> posCorners = new List<Vector3>();
+        List<Vector3> posPath = new List<Vector3>();
+        Vector3 curPos, curUnitVector, vec;
+        float dis, intervals;
+        DestroySpheres();
+        if (NavMesh.SamplePosition(agent.transform.position, out hit, 5.0f, NavMesh.AllAreas))
+        {
+            NavMesh.CalculatePath(hit.position, end.position, NavMesh.AllAreas, path);
         }
+        lineRenderer.positionCount = path.corners.Length;
+        lineRenderer.SetPositions(path.corners);
+        
+        foreach(Vector3 c in path.corners)
+        {
+             posCorners.Add(c);
+        }
+
+        intervals = 1;
+        for (int i = 0; i < path.corners.Length-1 || (i + 1) != path.corners.Length; i++)
+        {
+            curPos = posCorners[i];
+            vec = posCorners[i+1] - posCorners[i];
+            dis = Vector3.Distance(posCorners[i], posCorners[i+1]);
+            curUnitVector.x = vec.x / dis * intervals;
+            curUnitVector.y = vec.y / dis * intervals;
+            curUnitVector.z = vec.z / dis * intervals;
+            while (Vector3.Distance(curPos, posCorners[i+1]) >= intervals)
+            {
+                curPos = curPos + curUnitVector;
+                posPath.Add(curPos);
+            }
+        }
+        foreach (Vector3 p in posPath)
+        {
+            spheres.Add(Instantiate(prefab, p, Quaternion.identity));
+        }
+    }
 
     public void Reset()
     {
@@ -116,6 +160,13 @@ public class NavMan : MonoBehaviour
         benCanvas.constraintActive = false;
     }
 
+    public void DestroySpheres()
+    {
+        foreach (GameObject g in spheres)
+        {
+            Destroy(g);
+        }
+    }
     public void OnAreaTargetChecked()
     {
         textMesh.text = "Tracked";

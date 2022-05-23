@@ -20,7 +20,7 @@ public class NextLocationButtons : MonoBehaviour
     public Button showLocationButton;
     public Button hideLocationButton;
 
-    public NavMan NavMan;
+    public NavManager NavManager;
 
     // Start is called before the first frame update
     void Start()
@@ -34,19 +34,19 @@ public class NextLocationButtons : MonoBehaviour
     {
         HideLocOnClick();
         end.transform.position = nic.transform.position;
-        NavMan.currentLookAtConstraint.constraintActive = false;
+        NavManager.currentLookAtConstraint.constraintActive = false;
     }
     void changeToMike()
     {
         HideLocOnClick();
         end.transform.position = mike.transform.position;
-        NavMan.currentLookAtConstraint.constraintActive = false;
+        NavManager.currentLookAtConstraint.constraintActive = false;
     }
     void changeToBen()
     {
         HideLocOnClick();
         end.transform.position = ben.transform.position;
-        NavMan.currentLookAtConstraint.constraintActive = false;
+        NavManager.currentLookAtConstraint.constraintActive = false;
     }
     void HideLocOnClick()
     {
