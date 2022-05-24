@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5bbd1dc7-5884-49b7-a5cc-94a32f1078db" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.area_target/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.area_target/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/IndicatorBall.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/IndicatorBall.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/NavManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/NavManager.cs" afterDir="false" />
     </list>
@@ -68,7 +69,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="f318da9f-505f-4ba4-97a0-471a685f3842" name="Changes" comment="" />
+      <changelist id="5bbd1dc7-5884-49b7-a5cc-94a32f1078db" name="Changes" comment="" />
       <created>1652864170897</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -78,6 +79,7 @@
       <workItem from="1653272868196" duration="6362000" />
       <workItem from="1653279329957" duration="12998000" />
       <workItem from="1653296879181" duration="2630000" />
+      <workItem from="1653357757675" duration="2544000" />
     </task>
     <servers />
   </component>

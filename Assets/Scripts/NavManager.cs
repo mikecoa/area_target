@@ -8,6 +8,9 @@ using TMPro;
 using UnityEngine.Animations;
 using UnityEngine.UIElements;
 using Button = UnityEngine.UI.Button;
+using UnityEngine.UI;
+using DG.Tweening;
+using System.Collections.Generic;
 
 public class NavManager : MonoBehaviour
 {
@@ -36,6 +39,7 @@ public class NavManager : MonoBehaviour
     NavMeshHit hit;
     public List<Vector3> posPath;
     public LookAtConstraint currentLookAtConstraint;
+    public List<Transform> objToMove;
 
     // Start is called before the first frame update
     void Start()
@@ -51,6 +55,7 @@ public class NavManager : MonoBehaviour
     // Update is called once per frame
     public void Update()
     {
+
         //List<Vector3> corners = new List<Vector3>();
         if (start.transform.position == end.transform.position) Reset();
         
@@ -107,12 +112,20 @@ public class NavManager : MonoBehaviour
 
         if (reach && distance > distance_adjust) Reset();
 
-        for (int i = 0; i < posPath.Count; i++)
+        /*for (int i = 0; i < posPath.Count; i++)
         {
             if (Vector3.Distance(agent.transform.position, posPath[i]) < 1)
             {
                 spheres[i].SetActive(false);
             }
+        }*/
+
+        Collider[] objs;
+        objs = Physics.OverlapSphere(agent.transform.position + Vector3.up, 1);
+        objToMove = new List<Transform>();
+        foreach (Collider c in objs)
+        {
+            c.gameObject.SetActive(false);
         }
     }
     List<GameObject> spheres = new List<GameObject>();

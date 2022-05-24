@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 424696757442849729}
   - component: {fileID: 424696757442849756}
   - component: {fileID: 424696757442849759}
+  - component: {fileID: 8980601866376595632}
   m_Layer: 5
   m_Name: IndicatorBall
   m_TagString: Untagged
@@ -108,3 +109,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11f76082d563aea4fb8621e857ae52c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &8980601866376595632
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 424696757442849731}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 50, y: 50, z: 50}
+  m_Center: {x: 0, y: 0, z: 0}
