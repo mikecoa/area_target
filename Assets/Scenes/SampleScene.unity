@@ -1638,8 +1638,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 644836861}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.6, z: 0}
-  m_LocalScale: {x: 0.2, y: 1, z: 0.2}
+  m_LocalPosition: {x: 0, y: -0.456, z: 0}
+  m_LocalScale: {x: 0.25, y: 1.1115752, z: 0.25}
   m_Children: []
   m_Father: {fileID: 1863566108}
   m_RootOrder: 0
@@ -2655,10 +2655,8 @@ MonoBehaviour:
   agent: {fileID: 644836861}
   prefab: {fileID: 424696757442849731, guid: a6a47489a2125454a85476f6274ab481, type: 3}
   findPathButton: {fileID: 103271581}
-  cam: {fileID: 1863566107}
   textMesh: {fileID: 1916310919}
   distance_adjust: 2
-  spheres: []
   posPath: []
   currentLookAtConstraint: {fileID: 0}
 --- !u!1 &1173790883

@@ -39,7 +39,6 @@ public class NavManager : MonoBehaviour
     NavMeshHit hit;
     public List<Vector3> posPath;
     public LookAtConstraint currentLookAtConstraint;
-    public List<Transform> objToMove;
 
     // Start is called before the first frame update
     void Start()
@@ -122,7 +121,6 @@ public class NavManager : MonoBehaviour
 
         Collider[] objs;
         objs = Physics.OverlapSphere(agent.transform.position + Vector3.up, 1);
-        objToMove = new List<Transform>();
         foreach (Collider c in objs)
         {
             c.gameObject.SetActive(false);
