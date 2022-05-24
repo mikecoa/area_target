@@ -40,6 +40,7 @@ public class NavManager : MonoBehaviour
     NavMeshHit hit;
     public List<Vector3> posPath;
     public LookAtConstraint currentLookAtConstraint;
+    public LayerMask ballsLayerMask;
 
     // Start is called before the first frame update
     void Start()
@@ -121,7 +122,7 @@ public class NavManager : MonoBehaviour
         }*/
 
         Collider[] objs;
-        objs = Physics.OverlapSphere(agent.transform.position + Vector3.up, 1, 1 << LayerMask.NameToLayer("ball"));
+        objs = Physics.OverlapSphere(agent.transform.position + Vector3.up, 1, ballsLayerMask);
         foreach (Collider c in objs)
         {
             c.gameObject.SetActive(false);

@@ -2659,6 +2659,9 @@ MonoBehaviour:
   distance_adjust: 2
   posPath: []
   currentLookAtConstraint: {fileID: 0}
+  ballsLayerMask:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &1173790883
 GameObject:
   m_ObjectHideFlags: 0
