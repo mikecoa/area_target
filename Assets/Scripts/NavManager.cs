@@ -11,6 +11,7 @@ using Button = UnityEngine.UI.Button;
 using UnityEngine.UI;
 using DG.Tweening;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 
 public class NavManager : MonoBehaviour
 {
@@ -120,7 +121,7 @@ public class NavManager : MonoBehaviour
         }*/
 
         Collider[] objs;
-        objs = Physics.OverlapSphere(agent.transform.position + Vector3.up, 1);
+        objs = Physics.OverlapSphere(agent.transform.position + Vector3.up, 1, 1 << LayerMask.NameToLayer("ball"));
         foreach (Collider c in objs)
         {
             c.gameObject.SetActive(false);

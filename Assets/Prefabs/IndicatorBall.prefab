@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 424696757442849756}
   - component: {fileID: 424696757442849759}
   - component: {fileID: 8980601866376595632}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: IndicatorBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
