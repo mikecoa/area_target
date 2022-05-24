@@ -12,6 +12,7 @@ using UnityEngine.UI;
 using DG.Tweening;
 using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
+using Image = UnityEngine.UIElements.Image;
 
 public class NavManager : MonoBehaviour
 {
@@ -41,6 +42,10 @@ public class NavManager : MonoBehaviour
     public List<Vector3> posPath;
     public LookAtConstraint currentLookAtConstraint;
     public LayerMask ballsLayerMask;
+    //public List<Vector3> turnPos;
+    public GameObject turn;
+    public List<GameObject> turns;
+    //public GameObject corner;
 
     // Start is called before the first frame update
     void Start()
@@ -121,6 +126,17 @@ public class NavManager : MonoBehaviour
             }
         }*/
 
+        /*foreach (Vector3 t in turnPos)
+        {
+            if (Vector3.Distance(t, agent.transform.position) < 0.5f)
+            {
+                turns.Add(Instantiate(turn, t + Vector3.back + Vector3.up * 0.5f, Quaternion.identity,canvas));
+            }
+            else
+            {
+                turns.Clear();
+            }
+        }*/
         Collider[] objs;
         objs = Physics.OverlapSphere(agent.transform.position + Vector3.up, 1, ballsLayerMask);
         foreach (Collider c in objs)
@@ -129,10 +145,12 @@ public class NavManager : MonoBehaviour
         }
     }
     List<GameObject> spheres = new List<GameObject>();
+    private List<GameObject> corners = new List<GameObject>();
     public void FindPath()
     {
         List<Vector3> posCorners = new List<Vector3>();
         posPath = new List<Vector3>();
+        //turnPos = new List<Vector3>();
         Vector3 curPos, curUnitVector, vec;
         float dis, intervals;
         DestroySpheres();  
@@ -146,11 +164,12 @@ public class NavManager : MonoBehaviour
         foreach(Vector3 c in path.corners)
         {
              posCorners.Add(c);
+             //corners.Add(Instantiate(corner, c+Vector3.up*1.25f,Quaternion.identity,canvas));
         }
 
         intervals = 1;
         curPos = posCorners[0];
-        for (int i = 0; i < path.corners.Length-1 || (i + 1) != path.corners.Length; i++)
+        for (int i = 0; i < path.corners.Length-1 ; i++)
         {
             if (Vector3.Distance(curPos, posCorners[i + 1]) >= intervals)
             {
@@ -172,8 +191,48 @@ public class NavManager : MonoBehaviour
         {
             spheres.Add(Instantiate(prefab, p, Quaternion.identity,canvas));
         }
+
+        int j = 0;
+        GameObject t;
+        //int dir; //-1 left, 1 right, 0 straight
+        //Vector3 nextUnitVector;
+        foreach (Vector3 p in posCorners)
+        {
+            /*dir = 0;
+
+            if (j >= 1 && j <= posCorners.Count-2)
+            {
+                Debug.Log(FindTeta((posCorners[j] - posCorners[j - 1]) * -1, posCorners[j+1] - posCorners[j]));
+            }
+            else
+            {
+                Debug.Log("EMEM");
+            }*/
+            
+            
+            if (!(j == 0 || j == posCorners.Count-1))
+            {
+                vec = posCorners[j] - posCorners[j-1];
+                dis = Vector3.Distance(posCorners[j-1], posCorners[j]);
+                curUnitVector.x = vec.x / dis * intervals;
+                curUnitVector.y = vec.y / dis * intervals;
+                curUnitVector.z = vec.z / dis * intervals;
+                if (Vector3.Distance(posCorners[j-1], posCorners[j]) > intervals)
+                {
+                    t = Instantiate(turn, p + Vector3.up * 1.25f + curUnitVector*0.8f, Quaternion.identity, canvas);
+                    turns.Add(t);
+                }
+            }
+            j++;
+        }
     }
 
+    /*public float FindTeta(Vector3 ba, Vector3 bc)
+    {
+        return Mathf.Acos(Vector3.Dot(ba, bc) /
+                          ((Vector3.Distance(ba, Vector3.zero)) * Vector3.Distance(bc, Vector3.zero)));
+    }*/
+    
     public void Reset()
     {
         Nicolas.SetActive(false);
@@ -193,7 +252,12 @@ public class NavManager : MonoBehaviour
         {
             Destroy(g);
         }
+        foreach (GameObject g in turns)
+        {
+            Destroy(g);
+        }
         spheres.Clear();
+        turns.Clear();
         posPath.Clear();
     }
     public void OnAreaTargetChecked()
