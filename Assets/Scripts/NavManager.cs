@@ -11,6 +11,7 @@ using Button = UnityEngine.UI.Button;
 using UnityEngine.UI;
 using DG.Tweening;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor.Experimental.GraphView;
 using Image = UnityEngine.UIElements.Image;
 
@@ -43,12 +44,13 @@ public class NavManager : MonoBehaviour
     public LayerMask ballsLayerMask;
     public GameObject turn;
     public List<GameObject> turns;
-
+    private int count;
 
     // Start is called before the first frame update
     void Start()
     {
         path = new NavMeshPath();
+        count = 0;
         findPathButton.onClick.AddListener(FindPath);
         nicCanvas.constraintActive = false;
         mikeCanvas.constraintActive = false;
@@ -91,13 +93,33 @@ public class NavManager : MonoBehaviour
         foreach (Collider c in objs)
         {
             c.gameObject.SetActive(false);
+            count++;
+        }
+
+        if (spheres.Count > 0 && count <= spheres.Count - 1 && spheres[count].active == false)
+        {
+            spheres[count].active = true;
+        }
+        
+        foreach(GameObject t in turns.ToList())
+        {
+            if (Vector3.Distance(agent.transform.position, t.transform.position) < 3)
+            {
+                t.SetActive(true);
+            }
+            if (Vector3.Distance(agent.transform.position, t.transform.position) < 1.5f)
+            {
+                turns.Remove(t);
+                Destroy(t);
+            }
         }
     }
-    List<GameObject> spheres = new List<GameObject>();
-    private List<GameObject> corners = new List<GameObject>();
+
+    private List<GameObject> spheres = new List<GameObject>();
 
     public void FindPath()
     {
+        count = 0;
         List<Vector3> posCorners = new List<Vector3>();
         posPath = new List<Vector3>();
         Vector3 curPos, curUnitVector, vec;
@@ -140,6 +162,16 @@ public class NavManager : MonoBehaviour
             spheres.Add(Instantiate(prefab, p, Quaternion.identity, canvas));
         }
 
+        foreach (GameObject s in spheres)
+        {
+            s.SetActive(false);
+        }
+        spheres[0].SetActive(true);
+        foreach (GameObject s in spheres)
+        {
+            s.SetActive(false);
+        }
+
         int j = 0;
         GameObject t;
         Vector3 eulerAngles;
@@ -156,6 +188,7 @@ public class NavManager : MonoBehaviour
                 {
                     t = Instantiate(turn, p + Vector3.up * 1.25f, Quaternion.identity, canvas);
                     t.transform.position += curUnitVector * 0.8f;
+                    t.SetActive(false);
                     turns.Add(t);
                 }
             }
