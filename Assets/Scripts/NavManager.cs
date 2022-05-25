@@ -219,7 +219,23 @@ public class NavManager : MonoBehaviour
                 curUnitVector.z = vec.z / dis * intervals;
                 if (Vector3.Distance(posCorners[j-1], posCorners[j]) > intervals)
                 {
-                    t = Instantiate(turn, p + Vector3.up * 1.25f + curUnitVector*0.8f, Quaternion.identity, canvas);
+                    t = Instantiate(turn, p + Vector3.up * 1.25f, Quaternion.identity, canvas);
+                    t.transform.LookAt(posCorners[j+1],vec);
+                    if((posCorners[j + 1].x - posCorners[j].x)/vec.x>0)
+                    {
+                        t.transform.Rotate(90, 0, 180);
+                        if((posCorners[j + 1].z - posCorners[j].z)/vec.z>0)
+                            t.transform.Rotate(0,0,180);
+                    }
+                    
+                    else
+                    {
+                        t.transform.Rotate(90, 0, 0);
+                        if((posCorners[j + 1].z - posCorners[j].z)/vec.z>0)
+                            t.transform.Rotate(0,0,180);
+                    }
+                    
+                    t.transform.position += curUnitVector * 0.8f;
                     turns.Add(t);
                 }
             }

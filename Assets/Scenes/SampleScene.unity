@@ -2662,7 +2662,6 @@ MonoBehaviour:
   ballsLayerMask:
     serializedVersion: 2
     m_Bits: 64
-  turnPos: []
   turn: {fileID: 8836349316630980779, guid: d53679ea8d69bdf429415bfdf45f08ef, type: 3}
   turns: []
 --- !u!1 &1173790883
