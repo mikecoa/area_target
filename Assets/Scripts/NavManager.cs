@@ -194,6 +194,7 @@ public class NavManager : MonoBehaviour
 
         int j = 0;
         GameObject t;
+        Vector3 eulerAngles;
         //int dir; //-1 left, 1 right, 0 straight
         //Vector3 nextUnitVector;
         foreach (Vector3 p in posCorners)
@@ -220,27 +221,24 @@ public class NavManager : MonoBehaviour
                 if (Vector3.Distance(posCorners[j-1], posCorners[j]) > intervals)
                 {
                     t = Instantiate(turn, p + Vector3.up * 1.25f, Quaternion.identity, canvas);
-                    t.transform.LookAt(posCorners[j+1],vec);
-                    if((posCorners[j + 1].x - posCorners[j].x)/vec.x>0)
-                    {
-                        t.transform.Rotate(90, 0, 180);
-                        if((posCorners[j + 1].z - posCorners[j].z)/vec.z>0)
-                            t.transform.Rotate(0,0,180);
-                    }
-                    
-                    else
-                    {
-                        t.transform.Rotate(90, 0, 0);
-                        if((posCorners[j + 1].z - posCorners[j].z)/vec.z>0)
-                            t.transform.Rotate(0,0,180);
-                    }
-                    
                     t.transform.position += curUnitVector * 0.8f;
                     turns.Add(t);
                 }
             }
             j++;
         }
+
+        for (int i = 0; i < turns.Count - 1; i++)
+        {
+            turns[i].transform.LookAt(turns[i+1].transform);
+            eulerAngles = turns[i].transform.rotation.eulerAngles;
+            eulerAngles = new Vector3(0, eulerAngles.y + 90, 0);
+            turns[i].transform.rotation = Quaternion.Euler(eulerAngles);
+        }
+        turns[turns.Count-1].transform.LookAt(end.transform);
+        eulerAngles = turns[turns.Count-1].transform.rotation.eulerAngles;
+        eulerAngles = new Vector3(0, eulerAngles.y + 90, 0);
+        turns[turns.Count-1].transform.rotation = Quaternion.Euler(eulerAngles);
     }
 
     /*public float FindTeta(Vector3 ba, Vector3 bc)
