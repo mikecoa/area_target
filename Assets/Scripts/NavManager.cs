@@ -10,7 +10,6 @@ using UnityEngine.UIElements;
 using Button = UnityEngine.UI.Button;
 using UnityEngine.UI;
 using DG.Tweening;
-using System.Collections.Generic;
 using System.Linq;
 using Image = UnityEngine.UIElements.Image;
 
@@ -108,8 +107,11 @@ public class NavManager : MonoBehaviour
                 {
                     spheres[j].SetActive(true);
                 }
-
                 test++;
+            }
+            if (test < turns.Count)
+            {
+                turns[test].SetActive(true);
             }
         }
 
@@ -131,10 +133,10 @@ public class NavManager : MonoBehaviour
 
         foreach(GameObject t in turns.ToList())
         {
-            if (Vector3.Distance(agent.transform.position, t.transform.position) < 2)
+            /*if (Vector3.Distance(agent.transform.position, t.transform.position) < 1.5f)
             {
                 t.SetActive(true);
-            }
+            }*/
             if (Vector3.Distance(agent.transform.position, t.transform.position) < 1)
             {
                 turns.Remove(t);
@@ -142,8 +144,6 @@ public class NavManager : MonoBehaviour
             }
         }
     }
-
-
 
     public void FindPath()
     {
@@ -228,11 +228,10 @@ public class NavManager : MonoBehaviour
                 s.SetActive(true);
             }
         }
-        
+
         else if (spheres.Count > 0 && pathCount.Count > 1)
         {
-            spheres[0].SetActive(true);
-            for (int i = 1; i < pathCount[0]; i++)
+            for (int i = 0; i < pathCount[0]; i++)
             {
                 spheres[i].SetActive(true);
             }
@@ -317,6 +316,9 @@ public class NavManager : MonoBehaviour
                 ret.Add(a[i]+val);
             }
         }
+
+        ret[0] -= 1;
+        ret[ret.Count - 1] += 1;
         return ret;
     }
     public void DestroySpheres()
