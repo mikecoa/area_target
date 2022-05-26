@@ -221,6 +221,8 @@ public class NavManager : MonoBehaviour
             }
         }
 
+        Destroy(spheres[0]);
+
         int j = 0;
         GameObject t;
         Vector3 eulerAngles;
