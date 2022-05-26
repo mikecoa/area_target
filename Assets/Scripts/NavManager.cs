@@ -92,42 +92,42 @@ public class NavManager : MonoBehaviour
             }
             lineRenderer.positionCount = 0;
             reach = true;
+            DestroySpheres();
         }
 
         if (reach && distance > distance_adjust) Reset();
-        
+
+
+        try
+        {
+            if (temps > spheres.Count) temps = spheres.Count;
+            if (spheres.Count > 0 && temps < spheres.Count && temps > 0)
+            {
+                if (test < pathCount.Count-1 && spheres[temps - 1].activeSelf == false)
+                {
+                    s = temps;
+                    temps += pathCount[test + 1];
+                    for (int j = s; j < temps; j++)
+                    {
+                        spheres[j].SetActive(true);
+                    }
+
+                    test++;
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+
         Collider[] objs;
         objs = Physics.OverlapSphere(agent.transform.position + Vector3.up, 1, ballsLayerMask);
         foreach (Collider c in objs)
         {
             c.gameObject.SetActive(false);
         }
-
-        // for (int i = 1; i < spheres.Count; i++)
-        // {
-        //     if (spheres[i].activeSelf == false) spheres[i-1].SetActive(false);
-        // }
-
-        
-        
-        if (spheres.Count > 0 && temps < spheres.Count && temps > 0)
-        {
-            /*if (temps >= spheres.Count + 1) temps = spheres.Count;*/
-            if (spheres[temps - 1].activeSelf == false)
-            {
-                temps += pathCount[test + 1];
-                for (int j = s; j < temps; j++)
-                {
-                    spheres[j].SetActive(true);
-                }
-
-                s = temps;
-                test++;
-            }
-            
-        }
-        
-
 
         foreach(GameObject t in turns.ToList())
         {
@@ -197,27 +197,20 @@ public class NavManager : MonoBehaviour
         counts[counts.Count - 1] -= 1;
         pathCount = retList(counts);
         counts.RemoveAt(count);
-        s = pathCount[0];
+        s = 0;
         temps = pathCount[0];
         test = 0;
-        
-        // for (int i = 0; i < counts.Count; i++)
+
+        // for (int i = 0; i < pathCount.Count; i++)
         // {
-        //     Debug.Log(counts[i]);
+        //     Debug.Log(pathCount[i]);
         // }
-        for (int i = 0; i < pathCount.Count; i++)
-        {
-            Debug.Log(pathCount[i]);
-        }
         
         foreach (Vector3 p in posPath)
         {
-            spheres.Add(Instantiate(prefab, p, Quaternion.identity, canvas));
-        }
-        
-        for (int i = 0; i < spheres.Count; i++)
-        {
-            spheres[i].SetActive(false);
+            GameObject s = Instantiate(prefab, p, Quaternion.identity, canvas);
+            s.SetActive(false);
+            spheres.Add(s);
         }
 
         for (int i = 0; i < pathCount[0]; i++)
