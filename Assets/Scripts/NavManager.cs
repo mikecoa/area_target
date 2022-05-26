@@ -44,12 +44,20 @@ public class NavManager : MonoBehaviour
     public LayerMask ballsLayerMask;
     public GameObject turn;
     public List<GameObject> turns;
-    private int count;
+    private int count, temps, s, test;
+    private List<int> counts, pathCount;
+    private List<GameObject> spheres;
+    private bool allNotActive;
 
     // Start is called before the first frame update
     void Start()
     {
         path = new NavMeshPath();
+        test = 0;
+        temps = 1;
+        s = 1;
+        spheres = new List<GameObject>();
+        pathCount = new List<int>();
         count = 0;
         findPathButton.onClick.AddListener(FindPath);
         nicCanvas.constraintActive = false;
@@ -93,21 +101,41 @@ public class NavManager : MonoBehaviour
         foreach (Collider c in objs)
         {
             c.gameObject.SetActive(false);
-            count++;
         }
 
-        if (spheres.Count > 0 && count <= spheres.Count - 1 && spheres[count].active == false)
+        // for (int i = 1; i < spheres.Count; i++)
+        // {
+        //     if (spheres[i].activeSelf == false) spheres[i-1].SetActive(false);
+        // }
+
+        
+        
+        if (spheres.Count > 0 && temps < spheres.Count && temps > 0)
         {
-            spheres[count].active = true;
+            /*if (temps >= spheres.Count + 1) temps = spheres.Count;*/
+            if (spheres[temps - 1].activeSelf == false)
+            {
+                temps += pathCount[test + 1];
+                for (int j = s; j < temps; j++)
+                {
+                    spheres[j].SetActive(true);
+                }
+
+                s = temps;
+                test++;
+            }
+            
         }
         
+
+
         foreach(GameObject t in turns.ToList())
         {
-            if (Vector3.Distance(agent.transform.position, t.transform.position) < 3)
+            if (Vector3.Distance(agent.transform.position, t.transform.position) < 2)
             {
                 t.SetActive(true);
             }
-            if (Vector3.Distance(agent.transform.position, t.transform.position) < 1.5f)
+            if (Vector3.Distance(agent.transform.position, t.transform.position) < 1)
             {
                 turns.Remove(t);
                 Destroy(t);
@@ -115,12 +143,16 @@ public class NavManager : MonoBehaviour
         }
     }
 
-    private List<GameObject> spheres = new List<GameObject>();
+
 
     public void FindPath()
     {
+        test = 0;
         count = 0;
+        
+        pathCount = new List<int>();
         List<Vector3> posCorners = new List<Vector3>();
+        counts = new List<int>();
         posPath = new List<Vector3>();
         Vector3 curPos, curUnitVector, vec;
         float dis, intervals;
@@ -134,13 +166,16 @@ public class NavManager : MonoBehaviour
         {
             posCorners.Add(c);
         }
-
         intervals = 1;
         curPos = posCorners[0];
+        counts.Add(1);
+        Vector3 temp = new Vector3();
         for (int i = 0; i < path.corners.Length - 1; i++)
         {
             if (Vector3.Distance(curPos, posCorners[i + 1]) >= intervals)
             {
+                if (Vector3.Distance(temp, posCorners[i] + Vector3.up * 1.25f) < intervals) counts[count]++;
+                temp = posCorners[i] + Vector3.up * 1.25f;
                 posPath.Add(posCorners[i] + Vector3.up * 1.25f);
             }
 
@@ -154,23 +189,42 @@ public class NavManager : MonoBehaviour
             {
                 curPos = curPos + curUnitVector;
                 posPath.Add(curPos + Vector3.up * 1.25f);
+                counts[count] += 1;
             }
+            counts.Add(0);
+            count++;
         }
-
+        counts[counts.Count - 1] -= 1;
+        pathCount = retList(counts);
+        counts.RemoveAt(count);
+        s = pathCount[0];
+        temps = pathCount[0];
+        test = 0;
+        
+        // for (int i = 0; i < counts.Count; i++)
+        // {
+        //     Debug.Log(counts[i]);
+        // }
+        for (int i = 0; i < pathCount.Count; i++)
+        {
+            Debug.Log(pathCount[i]);
+        }
+        
         foreach (Vector3 p in posPath)
         {
             spheres.Add(Instantiate(prefab, p, Quaternion.identity, canvas));
         }
+        
+        for (int i = 0; i < spheres.Count; i++)
+        {
+            spheres[i].SetActive(false);
+        }
 
-        foreach (GameObject s in spheres)
+        for (int i = 0; i < pathCount[0]; i++)
         {
-            s.SetActive(false);
+            spheres[i].SetActive(true);
         }
-        spheres[0].SetActive(true);
-        foreach (GameObject s in spheres)
-        {
-            s.SetActive(false);
-        }
+
 
         int j = 0;
         GameObject t;
@@ -226,6 +280,33 @@ public class NavManager : MonoBehaviour
         benCanvas.constraintActive = false;
     }
 
+    public List<int> retList(List<int> a)
+    {
+        List<int> ret = new List<int>();
+        int val;
+        for (int i = 0; i < a.Count-1; i++)
+        {
+            val = 0;
+            if (a[i] != 0)
+            {
+                if (i >= 2 && a[i-1] == 0 && a[i-2] == 0)
+                {
+                    val += 1;
+                }
+                
+                if (i < a.Count-2 && a[i+1] == 0)
+                {
+                    val += 1;
+                }
+                if (i < a.Count-3 && a[i+1] == 0 && a[i+2] == 0)
+                {
+                    val -= 1;
+                }
+                ret.Add(a[i]+val);
+            }
+        }
+        return ret;
+    }
     public void DestroySpheres()
     {
         foreach (GameObject g in spheres)
@@ -239,6 +320,7 @@ public class NavManager : MonoBehaviour
         spheres.Clear();
         turns.Clear();
         posPath.Clear();
+        pathCount.Clear();
     }
     public void OnAreaTargetChecked()
     {
