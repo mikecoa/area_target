@@ -114,20 +114,20 @@ public class NavManager : MonoBehaviour
         }
 
 
-        // Collider[] objs;
-        // objs = Physics.OverlapSphere(agent.transform.position + Vector3.up, 1, ballsLayerMask);
-        // foreach (Collider c in objs)
-        // {
-        //     c.gameObject.SetActive(false);
-        // }
-        
-        foreach (GameObject s in spheres)
+        Collider[] objs;
+        objs = Physics.OverlapSphere(agent.transform.position + Vector3.up, 1, ballsLayerMask);
+        foreach (Collider c in objs)
         {
-            if (Vector3.Distance(agent.transform.position, s.transform.position) < 1)
-            {
-                s.SetActive(false);
-            }
+            c.gameObject.SetActive(false);
         }
+        
+        // foreach (GameObject s in spheres)
+        // {
+        //     if (Vector3.Distance(agent.transform.position, s.transform.position) < 1)
+        //     {
+        //         s.SetActive(false);
+        //     }
+        // }
 
         foreach(GameObject t in turns.ToList())
         {
