@@ -2656,7 +2656,7 @@ MonoBehaviour:
   prefab: {fileID: 424696757442849731, guid: a6a47489a2125454a85476f6274ab481, type: 3}
   findPathButton: {fileID: 103271581}
   textMesh: {fileID: 1916310919}
-  distance_adjust: 2
+  distance_adjust: 1.2
   posPath: []
   currentLookAtConstraint: {fileID: 0}
   ballsLayerMask:
@@ -5312,7 +5312,7 @@ MonoBehaviour:
   OnTargetFound:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1141233084}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: NavMan, Assembly-CSharp
         m_MethodName: OnAreaTargetChecked
         m_Mode: 1
@@ -5327,7 +5327,7 @@ MonoBehaviour:
   OnTargetLost:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1141233084}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: NavMan, Assembly-CSharp
         m_MethodName: OnAreaTargetLost
         m_Mode: 1
