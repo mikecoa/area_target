@@ -114,11 +114,19 @@ public class NavManager : MonoBehaviour
         }
 
 
-        Collider[] objs;
-        objs = Physics.OverlapSphere(agent.transform.position + Vector3.up, 1, ballsLayerMask);
-        foreach (Collider c in objs)
+        // Collider[] objs;
+        // objs = Physics.OverlapSphere(agent.transform.position + Vector3.up, 1, ballsLayerMask);
+        // foreach (Collider c in objs)
+        // {
+        //     c.gameObject.SetActive(false);
+        // }
+        
+        foreach (GameObject s in spheres)
         {
-            c.gameObject.SetActive(false);
+            if (Vector3.Distance(agent.transform.position, s.transform.position) < 1)
+            {
+                s.SetActive(false);
+            }
         }
 
         foreach(GameObject t in turns.ToList())
@@ -141,6 +149,7 @@ public class NavManager : MonoBehaviour
     {
         test = 0;
         count = 0;
+        int tot = 0;
         
         pathCount = new List<int>();
         List<Vector3> posCorners = new List<Vector3>();
@@ -159,12 +168,14 @@ public class NavManager : MonoBehaviour
             posCorners.Add(c);
         }
         intervals = 1;
+        
+        
         curPos = posCorners[0];
         counts.Add(1);
         Vector3 temp = new Vector3();
         for (int i = 0; i < path.corners.Length - 1; i++)
         {
-            if (Vector3.Distance(curPos, posCorners[i + 1]) >= intervals)
+            if (Vector3.Distance(curPos, posCorners[i + 1]) >= intervals && curPos != posCorners[0])
             {
                 if (Vector3.Distance(temp, posCorners[i] + Vector3.up * 1.25f) < intervals) counts[count]++;
                 temp = posCorners[i] + Vector3.up * 1.25f;
@@ -193,6 +204,12 @@ public class NavManager : MonoBehaviour
         temps = pathCount[0];
         test = 0;
 
+        for (int i = 0; i < pathCount.Count-1; i++)
+        {
+            tot += pathCount[i];
+        }
+
+        pathCount[pathCount.Count - 1] = posPath.Count - tot;
         /*for (int i = 0; i < pathCount.Count; i++)
         {
             Debug.Log(pathCount[i]);
@@ -220,8 +237,6 @@ public class NavManager : MonoBehaviour
                 spheres[i].SetActive(true);
             }
         }
-
-        Destroy(spheres[0]);
 
         int j = 0;
         GameObject t;
