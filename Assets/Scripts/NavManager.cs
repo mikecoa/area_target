@@ -193,10 +193,10 @@ public class NavManager : MonoBehaviour
         temps = pathCount[0];
         test = 0;
 
-        for (int i = 0; i < pathCount.Count; i++)
+        /*for (int i = 0; i < pathCount.Count; i++)
         {
             Debug.Log(pathCount[i]);
-        }
+        }*/
         
         foreach (Vector3 p in posPath)
         {
@@ -204,15 +204,22 @@ public class NavManager : MonoBehaviour
             s.SetActive(false);
             spheres.Add(s);
         }
-
-        if (spheres.Count > 0)
+        if (pathCount.Count == 1)
         {
-            for (int i = 0; i < pathCount[0]; i++)
+            foreach (GameObject s in spheres)
+            {
+                s.SetActive(true);
+            }
+        }
+        
+        else if (spheres.Count > 0 && pathCount.Count > 1)
+        {
+            spheres[0].SetActive(true);
+            for (int i = 1; i < pathCount[0]; i++)
             {
                 spheres[i].SetActive(true);
             }
         }
-
 
         int j = 0;
         GameObject t;
