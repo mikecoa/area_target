@@ -12,7 +12,6 @@ using UnityEngine.UI;
 using DG.Tweening;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEditor.Experimental.GraphView;
 using Image = UnityEngine.UIElements.Image;
 
 public class NavManager : MonoBehaviour
@@ -98,29 +97,22 @@ public class NavManager : MonoBehaviour
         if (reach && distance > distance_adjust) Reset();
 
 
-        try
+        if (temps > spheres.Count) temps = spheres.Count;
+        if (spheres.Count > 0 && temps < spheres.Count && temps > 0)
         {
-            if (temps > spheres.Count) temps = spheres.Count;
-            if (spheres.Count > 0 && temps < spheres.Count && temps > 0)
+            if (test < pathCount.Count-1 && spheres[temps - 1].activeSelf == false)
             {
-                if (test < pathCount.Count-1 && spheres[temps - 1].activeSelf == false)
+                s = temps;
+                temps += pathCount[test + 1];
+                for (int j = s; j < temps; j++)
                 {
-                    s = temps;
-                    temps += pathCount[test + 1];
-                    for (int j = s; j < temps; j++)
-                    {
-                        spheres[j].SetActive(true);
-                    }
-
-                    test++;
+                    spheres[j].SetActive(true);
                 }
+
+                test++;
             }
         }
-        catch (Exception e)
-        {
-            Console.WriteLine(e);
-            throw;
-        }
+
 
         Collider[] objs;
         objs = Physics.OverlapSphere(agent.transform.position + Vector3.up, 1, ballsLayerMask);
@@ -201,10 +193,10 @@ public class NavManager : MonoBehaviour
         temps = pathCount[0];
         test = 0;
 
-        // for (int i = 0; i < pathCount.Count; i++)
-        // {
-        //     Debug.Log(pathCount[i]);
-        // }
+        for (int i = 0; i < pathCount.Count; i++)
+        {
+            Debug.Log(pathCount[i]);
+        }
         
         foreach (Vector3 p in posPath)
         {
@@ -213,9 +205,12 @@ public class NavManager : MonoBehaviour
             spheres.Add(s);
         }
 
-        for (int i = 0; i < pathCount[0]; i++)
+        if (spheres.Count > 0)
         {
-            spheres[i].SetActive(true);
+            for (int i = 0; i < pathCount[0]; i++)
+            {
+                spheres[i].SetActive(true);
+            }
         }
 
 
