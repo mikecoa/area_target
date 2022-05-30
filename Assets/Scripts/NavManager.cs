@@ -11,7 +11,7 @@ using Button = UnityEngine.UI.Button;
 using UnityEngine.UI;
 using DG.Tweening;
 using System.Linq;
-using Image = UnityEngine.UIElements.Image;
+using Image = UnityEngine.UI.Image;
 
 public class NavManager : MonoBehaviour
 {
@@ -46,6 +46,8 @@ public class NavManager : MonoBehaviour
     private List<int> counts, pathCount;
     private List<GameObject> spheres;
     private bool allNotActive;
+
+    private Tween fadeOutBallTween;
 
     // Start is called before the first frame update
     void Start()
@@ -120,7 +122,9 @@ public class NavManager : MonoBehaviour
         objs = Physics.OverlapSphere(agent.transform.position + Vector3.up, 1, ballsLayerMask);
         foreach (Collider c in objs)
         {
-            c.gameObject.SetActive(false);
+            fadeOutBallTween = c.gameObject.GetComponent<Image>().DOFade(0, 0.5f).OnComplete(() => HideTheBall(c.gameObject));
+            c.enabled = false;
+            //c.gameObject.SetActive(false);
         }
         
         // foreach (GameObject s in spheres)
@@ -143,6 +147,11 @@ public class NavManager : MonoBehaviour
                 Destroy(t);
             }
         }
+    }
+
+    private void HideTheBall(GameObject c)
+    {
+        c.gameObject.SetActive(false);
     }
 
     public void FindPath()
@@ -323,6 +332,7 @@ public class NavManager : MonoBehaviour
     }
     public void DestroySpheres()
     {
+        fadeOutBallTween.Kill();
         foreach (GameObject g in spheres)
         {
             Destroy(g);
